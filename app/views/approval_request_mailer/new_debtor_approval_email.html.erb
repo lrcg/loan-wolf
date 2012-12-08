@@ -1,0 +1,7 @@
+<p>Hey <%= @loan.debtor.initials %>,</p>
+<p>
+<%= @loan.creditor.initials %> claims you borrowed some money, in the amount of <%= number_to_currency @loan.amount %>. Please log in to Loan Shark and approve or reject.
+</p>
+
+<p>Love,<br />
+The Loan Shark</p>

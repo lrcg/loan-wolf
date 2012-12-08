@@ -1,0 +1,7 @@
+<p>Hey <%= @loan.creditor.initials %>,</p>
+<p>
+<%= @loan.debtor.initials %> has rejected the loan you created in the amount of <%= number_to_currency @loan.amount %>. Best work that out.
+</p>
+
+<p>Love,<br />
+The Loan Shark</p>

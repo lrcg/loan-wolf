@@ -1,0 +1,82 @@
+<blockquote>
+<p>&#8220;It is poor judgment to countersign another&#8217;s note, to become responsible for his debts.&#8221;</p>
+<small>The Bible</small>
+
+</blockquote>
+
+<hr />
+<h3>The Shark Bites You <small>(money you owe)</small></h3>
+
+<table class="table table-bordered table-striped table-hover">
+  <tr>
+    <th>Creditor</th>
+    <th>Last Updated</th>
+    <th style="text-align:right; padding-right:1em">Amount</th>
+    <th>Action</th>
+  </tr>
+<% debtorTotal = 0.0 %>
+<% @loans_as_debtor.each do |loan| %>
+  <% debtorTotal += loan.amount %>
+  <tr>
+    <td><%= loan.creditor %></td>
+    <td><%= time_ago_in_words loan.updated_at %> ago</td>
+	<td style="text-align:right; padding-right:1em"><%= number_to_currency loan.amount %></td>
+ 
+	<td>
+    	<% if !loan.approved_by_user_id? %>  
+          <%= link_to raw('Approve <i class="icon-ok"></i>'), markApproved_url(loan), :class => 'btn btn-success', :method => :put %>  	
+          <%= link_to raw('Reject <i class="icon-warning-sign"></i>'), destroy_url(loan), :class => 'btn btn-warning', :method => :delete, :confirm => 'Are you sure you want to reject this loan?' %>   
+    	<% end %>
+	</td>
+  </tr>
+
+  <% end %>
+  <tr>
+  	<td colspan="2">
+  		&nbsp;
+  	</td>
+  	<td style="text-align:right; padding-right:1em">
+  		<strong>You owe <%= number_to_currency debtorTotal %></strong>
+  	</td>
+  	<td colspan="1">&nbsp;</td>
+  </tr>
+</table>
+
+<hr />
+<h3>You Bite the Shark <small>(money you're owed)</small></h3>
+
+<% if @loans_as_creditor.any? %>
+  <table class="table table-bordered table-striped table-hover">
+    <tr>
+      <th>Debtor</th>
+      <th>Last Updated</th>
+      <th style="text-align:right; padding-right:1em">Amount</th>
+      <th>Action</th>
+    </tr>
+  <% creditorTotal = 0.0 %>
+  <% @loans_as_creditor.each do |loan| %>
+    <% creditorTotal += loan.amount %>
+    <tr>
+      <td><%= loan.debtor %></td>
+      <td><%= time_ago_in_words loan.updated_at %> ago</td>
+    <td style="text-align:right; padding-right:1em"><%= number_to_currency loan.amount %></td>
+   
+    <td>
+      <%= link_to raw('Mark Paid <i class="icon-thumbs-up"></i>'), markPaid_url(loan), :class => 'btn btn-success', :method => :put, :confirm => 'Donny, mark it zero!' %>
+    </td>
+    </tr>
+
+    <% end %>
+    <tr>
+      <td colspan="2">
+        &nbsp;
+      </td>
+      <td style="text-align:right; padding-right:1em">
+        <strong>You're owed <%= number_to_currency creditorTotal %></strong>
+      </td>
+      <td colspan="1">&nbsp;</td>
+    </tr>
+  </table>
+<% else %>
+  <p>No one owes you anything!</p>
+<% end %>
