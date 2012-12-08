@@ -1,5 +1,5 @@
 class DestroyNotificationMailer < ActionMailer::Base
- default from: "do-not-reply@theloanshark.com"
+ default from: "do-not-reply@theloanwolf.com"
 
  def new_destroy_notification_email(creditor,debtor,loan)
  	@creditor = creditor

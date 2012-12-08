@@ -1,5 +1,5 @@
 class ApprovalRequestMailer < ActionMailer::Base
-  default from: "do-not-reply@theloanshark.com"
+  default from: "do-not-reply@theloanwolf.com"
 
  def new_debtor_approval_email(loan)
     @loan = loan

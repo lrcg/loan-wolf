@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Loan Shark</title>
+  <title>Loan Wolf</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -15,7 +15,7 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
        </a>
-       <a class="brand" href="../">Loan Shark <embed src="/assets/shark.svg" type="image/svg+xml" width="50" /></a>
+       <a class="brand" href="../">Loan Wolf <embed src="/assets/shark.svg" type="image/svg+xml" width="50" /></a>
        <div class="nav-collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
           <li class="dropdown">
@@ -45,8 +45,15 @@
           </li>-->
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">Help Out <b class="caret"></b></a>  
+            <ul class="dropdown-menu" id="help-menu">
+              <li><a href="https://github.com/lthurston/loan-wolf/">Loan Wolf on Github</a></li>
+              <li><a href="https://github.com/lthurston/loan-wolf/issues">Report an Issue</a></li>
+            </ul>
+          </li>
         	<% if user_signed_in? %>
-        		<li><%= link_to 'Log out', destroy_user_session_path, :method => :delete %></li>
+        		<li><%= link_to raw('Log out <i class="icon-off"></i>'), destroy_user_session_path, :method => :delete %></li>
         	<% else %>
 				<li><%= link_to raw('Sign in <i class="icon-user"></i>'), new_user_session_path %></li>
         		<li><%= link_to raw('Register <i class="icon-plus"></i>'), new_user_registration_path %></li>
