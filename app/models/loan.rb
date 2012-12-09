@@ -1,4 +1,4 @@
-class Loans < ActiveRecord::Base
+class Loan < ActiveRecord::Base
   attr_accessible :amount, :approved_by_user_id, :approved_date, :credit_user_id, :debtor_user_id, :is_archived, :debtor, :creditor,:created_at, :updated_at
   validates_presence_of :amount, :credit_user_id, :debtor_user_id
 

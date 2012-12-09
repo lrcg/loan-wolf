@@ -4,7 +4,7 @@ class LoansController < ApplicationController
   def index
   	@loans_as_creditor = current_user.credits.current
     @loans_as_debtor = current_user.debts.current
-    @quote = Quotes.offset(rand(Quotes.count)).first
+    @quote = Quote.offset(rand(Quote.count)).first
   end
   def newTo
   	@users = User.where('id != ?', current_user.id)
@@ -15,7 +15,7 @@ class LoansController < ApplicationController
   end
 
   def destroy
-    @loan = Loans.find(params[:id])
+    @loan = Loan.find(params[:id])
     @loan.destroy
 
     DestroyNotificationMailer.new_destroy_notification_email(@loan.creditor,@loan.debtor,@loan).deliver
@@ -27,7 +27,7 @@ class LoansController < ApplicationController
   end
 
   def markApproved
-    @loan = Loans.find(params[:id])
+    @loan = Loan.find(params[:id])
     respond_to do |format|
       if @loan.can_be_marked_approved_by? current_user
         @loan.approved_by_user_id = current_user.id
@@ -44,7 +44,7 @@ class LoansController < ApplicationController
   end
 
   def markPaid
-    @loan = Loans.find(params[:id])
+    @loan = Loan.find(params[:id])
     respond_to do |format|
       if @loan.can_be_marked_paid_by? current_user
         @loan.is_archived = true
@@ -61,7 +61,7 @@ class LoansController < ApplicationController
 
   def create
     @users = User.where('id != ?', current_user.id)
-    @loan = Loans.new(params[:Loan])
+    @loan = Loan.new(params[:Loan])
 
     if @loan.credit_user_id.nil?
       @failAction = "newTo"
