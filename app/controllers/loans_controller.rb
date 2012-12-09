@@ -63,10 +63,10 @@ class LoansController < ApplicationController
     @users = User.where('id != ?', current_user.id)
     @loan = Loan.new(params[:Loan])
 
-    if @loan.credit_user_id.nil?
+    if @loan.creditor_user_id.nil?
       @failAction = "newTo"
-      @loan.credit_user_id = current_user.id
-      @user = User.where('id == ?', @loan.credit_user_id)
+      @loan.creditor_user_id = current_user.id
+      @user = User.where('id == ?', @loan.creditor_user_id)
     elsif @loan.debtor_user_id.nil?
       @failAction = "newFrom"
       @loan.debtor_user_id = current_user.id

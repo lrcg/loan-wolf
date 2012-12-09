@@ -11,10 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209145942) do
+ActiveRecord::Schema.define(:version => 20121209195645) do
 
   create_table "loans", :force => true do |t|
-    t.integer  "credit_user_id"
     t.integer  "debtor_user_id"
     t.float    "amount"
     t.integer  "approved_by_user_id"
@@ -22,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20121209145942) do
     t.boolean  "is_archived"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "creditor_user_id"
   end
 
   create_table "quotes", :force => true do |t|

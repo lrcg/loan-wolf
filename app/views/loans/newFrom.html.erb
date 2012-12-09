@@ -6,9 +6,9 @@
 		  <fieldset>	
 		  		<legend>New Loan To...</legend>
 		  		<div class="control-group">
-		  			<%= f.label :credit_user_id, :class => 'control-label' %>
+		  			<%= f.label :creditor_user_id, :class => 'control-label' %>
 					<div class="controls">
-						<%= f.select :credit_user_id, options_from_collection_for_select(@users, :id, :initials) %>
+						<%= f.select :creditor_user_id, options_from_collection_for_select(@users, :id, :initials) %>
 			  		</div>
 			  	</div>
 			  	<div class="control-group">
