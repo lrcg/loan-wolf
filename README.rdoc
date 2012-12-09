@@ -11,3 +11,14 @@ Install, it, set up your db, and run this rake task to import loan quotes:
   rake quotes:import
 
 Done.
+
+== Future Feature List
+
+* Implement logging mechanism for transactions and events
+* Implement admin interface with superuser privileges
+* Refactor so we have a true RESTful API
+* Implement Cancan to handle privileges
+* Create a new "loan engagement" model for tracking loans with multiple transfers
+* Hook devise up with office LDAP
+* there's more...
+
