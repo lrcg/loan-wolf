@@ -4,6 +4,7 @@ class LoansController < ApplicationController
   def index
   	@loans_as_creditor = current_user.credits.current
     @loans_as_debtor = current_user.debts.current
+    @quote = Quotes.offset(rand(Quotes.count)).first
   end
   def newTo
   	@users = User.where('id != ?', current_user.id)
