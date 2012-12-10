@@ -29,9 +29,7 @@ class LoansController < ApplicationController
   def sendPaymentReminder
     @loan = Loan.find(params[:id])
     PaymentReminderMailer.new_payment_reminder_email(@loan).deliver
-    flash.keep
-    flash[:notify] = 'Reminder email was sent.'
-    redirect_to root_url
+    redirect_to root_url, :notice => 'Reminder email was sent.'
   end
 
   def markApproved
