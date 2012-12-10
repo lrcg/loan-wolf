@@ -21,4 +21,3 @@ Done.
 * Create a new "loan engagement" model for tracking loans with multiple transfers
 * Hook devise up with office LDAP
 * there's more...
-

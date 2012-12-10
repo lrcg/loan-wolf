@@ -24,8 +24,10 @@
  
 	<td>
     	<% if !loan.approved_by_user_id? %>  
-          <%= link_to raw('Approve <i class="icon-ok"></i>'), markApproved_url(loan), :class => 'btn btn-success', :method => :put %>  	
+          <%= link_to raw('Approve <i class="icon-ok"></i>'), markApproved_url(loan), :class => 'btn btn-success', :method => :put %>
           <%= link_to raw('Reject <i class="icon-warning-sign"></i>'), destroy_url(loan), :class => 'btn btn-warning', :method => :delete, :confirm => 'Are you sure you want to reject this loan?' %>   
+      <% else %>
+          <%= link_to raw('I paid this! <i class="icon-ok"></i>'), sendPaymentReminder_url(loan), :class => 'btn btn-success', :confirm => 'Please confirm that you want a reminder of payment sent to the creditor regarding this loan. Only that individual can mark this loan as paid.' %>
     	<% end %>
 	</td>
   </tr>
@@ -62,7 +64,7 @@
     <td style="text-align:right; padding-right:1em"><%= number_to_currency loan.amount %></td>
    
     <td>
-      <%= link_to raw('Mark Paid <i class="icon-thumbs-up"></i>'), markPaid_url(loan), :class => 'btn btn-success', :method => :put, :confirm => 'Donny, mark it zero!' %>
+      <%= link_to raw('Mark Paid <i class="icon-thumbs-up"></i>'), markPaid_url(loan), :class => 'btn btn-success', :method => :put, :confirm => 'Are you sure you want to mark this loan as paid?' %>
     </td>
     </tr>
 

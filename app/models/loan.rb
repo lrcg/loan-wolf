@@ -5,7 +5,7 @@ class Loan < ActiveRecord::Base
   belongs_to :debtor, :class_name => 'User', :foreign_key => 'debtor_user_id'
   belongs_to :creditor, :class_name => 'User', :foreign_key => 'creditor_user_id'
 
-  validates :amount, numericality: { greater_than: 0, message: 'must be a legitimate value or it\'ll shut that whole thing down' }
+  validates :amount, numericality: { greater_than: 0, message: 'must be a legitimate dollar value greater than $0' }
 
   scope :current, where(:is_archived => nil)
 

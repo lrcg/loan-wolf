@@ -17,6 +17,8 @@ Slate2::Application.routes.draw do
 
   post "loans/create"
 
+  get "loans/:id/sendPaymentReminder" => 'loans#sendPaymentReminder', :as => :sendPaymentReminder
+
   devise_for :users
 
   # The priority is based upon order of creation:

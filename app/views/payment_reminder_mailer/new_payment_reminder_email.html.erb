@@ -1,0 +1,7 @@
+<p>Hey <%= @loan.creditor.initials %>,</p>
+<p>
+<%= @loan.debtor.initials %> says that a loan in the amount of <%= number_to_currency @loan.amount %> has been paid but not yet marked paid by you. Can you take a quick look and update Loan Wolf if necessary?
+</p>
+
+<p>Love,<br />
+The Loan Wolf</p>
