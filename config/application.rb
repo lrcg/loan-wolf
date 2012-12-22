@@ -62,5 +62,9 @@ module Slate2
     config.assets.initialize_on_precompile = false
 
     config.assets.precompile += %w( .svg )
+    
+    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+    config.action_mailer.delivery_method = :sendmail
   end
 end
