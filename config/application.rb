@@ -6,7 +6,7 @@ if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
   # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+  Bundler.require(:default, :assets, Rails.env)
 end
 
 module Slate2
@@ -61,10 +61,10 @@ module Slate2
 
     config.assets.initialize_on_precompile = false
 
-    config.assets.precompile += %w( .svg )
-    
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
     config.action_mailer.delivery_method = :sendmail
+
+    config.assets.precompile += %w( .svg application.css application.js)
   end
 end
