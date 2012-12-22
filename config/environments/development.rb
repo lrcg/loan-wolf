@@ -35,4 +35,6 @@ Slate2::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # TODO: Seems like the wrong place to put this, since this file is tracked. Find the right place to put this
+  NOTIFY_EMAIL_OVERRIDE = 'lucas@castironcoding.com'
 end

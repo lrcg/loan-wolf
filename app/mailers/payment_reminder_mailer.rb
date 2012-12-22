@@ -3,8 +3,7 @@ class PaymentReminderMailer < ActionMailer::Base
 
  def new_payment_reminder_email(loan)
     @loan = loan
-    @url  = "http://l-thurston.mpb.cichq.com:3000"
-    #mail(:to => creditor.email, :subject => "Payment Reminder")
-    mail(:to => 'lucas@castironcoding.com', :subject => "Payment Reminder")
+    @url  = "http://loanwolf.cichq.com"
+    mail(:to => @loan.creditor.email, :subject => "Payment Reminder")
   end
 end

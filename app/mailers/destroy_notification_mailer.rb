@@ -5,9 +5,8 @@ class DestroyNotificationMailer < ActionMailer::Base
  	@creditor = creditor
     @debtor = debtor
     @loan = loan
-    @url  = "http://l-thurston.mpb.cichq.com:3000"
-    #mail(:to => debtor.email, :subject => "Loan Confirmation Requested")
-    mail(:to => 'lucas@castironcoding.com', :subject => "Loan Confirmation Requested")
+    @url  = "http://loanwolf.cichq.com"
+    mail(:to => debtor.email, :subject => "Loan Confirmation Requested")
   end
 end
 

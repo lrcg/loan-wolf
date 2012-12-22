@@ -1,5 +1,5 @@
 class DevelopmentMailInterceptor
   def self.delivering_email(message)
-    message.to = 'lucas@castironcoding.com'
+    message.to = NOTIFY_EMAIL_OVERRIDE if defined?(NOTIFY_EMAIL_OVERRIDE)
   end
 end
