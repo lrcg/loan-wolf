@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  event_type: 1
+  primary_model: MyString
+  primary_model_id: 1
+  serialized_data: MyString
+  hr_summary: MyString
+
+two:
+  event_type: 1
+  primary_model: MyString
+  primary_model_id: 1
+  serialized_data: MyString
+  hr_summary: MyString

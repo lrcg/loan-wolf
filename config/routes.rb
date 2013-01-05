@@ -1,23 +1,23 @@
 Slate2::Application.routes.draw do
-  get "loans/newTo"
+  get "transfers/newTo"
 
-  get "loans/newFrom"
+  get "transfers/newFrom"
 
-  get "loans/list"
+  get "transfers/list"
 
-  get "loans/listAll"
+  get "transfers/listAll"
 
-  get "loans/index"
+  get "transfers/index"
 
-  put "loan/:id/markPaid" => 'loans#markPaid', :as => :markPaid
+  put "loan/:id/markPaid" => 'transfers#markPaid', :as => :markPaid
  
-  put "loan/:id/markApproved" => 'loans#markApproved', :as => :markApproved
+  put "loan/:id/markApproved" => 'transfers#markApproved', :as => :markApproved
 
-  delete "loan/:id" => 'loans#destroy', :as => :destroy
+  delete "loan/:id" => 'transfers#destroy', :as => :destroy
 
-  post "loans/create"
+  post "transfers/create"
 
-  get "loans/:id/sendPaymentReminder" => 'loans#sendPaymentReminder', :as => :sendPaymentReminder
+  get "transfers/:id/sendPaymentReminder" => 'transfers#sendPaymentReminder', :as => :sendPaymentReminder
 
   devise_for :users
 
@@ -71,7 +71,7 @@ Slate2::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
-  root :to => "loans#index"
+  root :to => "transfers#index"
 
   # See how all your routes lay out with "rake routes"
 

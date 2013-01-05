@@ -11,9 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209195645) do
+ActiveRecord::Schema.define(:version => 20130102003838) do
 
-  create_table "loans", :force => true do |t|
+  create_table "event_logs", :force => true do |t|
+    t.string   "event_type"
+    t.string   "primary_model"
+    t.integer  "primary_model_id"
+    t.string   "serialized_data"
+    t.string   "hr_summary"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "quotes", :force => true do |t|
+    t.string   "text"
+    t.string   "attribution"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "transfers", :force => true do |t|
     t.integer  "debtor_user_id"
     t.float    "amount"
     t.integer  "approved_by_user_id"
@@ -22,13 +39,6 @@ ActiveRecord::Schema.define(:version => 20121209195645) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "creditor_user_id"
-  end
-
-  create_table "quotes", :force => true do |t|
-    t.string   "text"
-    t.string   "attribution"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

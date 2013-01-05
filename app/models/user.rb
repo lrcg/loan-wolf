@@ -9,9 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :initials
   # attr_accessible :title, :body
 
-  has_many :debts, :foreign_key => 'debtor_user_id', :class_name => 'Loan'
-  has_many :credits, :foreign_key => 'creditor_user_id', :class_name => 'Loan'
-  has_many :approvals, :foreign_key => 'approved_by_user_id', :class_name => 'Loan'
+  has_many :debts, :foreign_key => 'debtor_user_id', :class_name => 'Transfer'
+  has_many :credits, :foreign_key => 'creditor_user_id', :class_name => 'Transfer'
+  has_many :approvals, :foreign_key => 'approved_by_user_id', :class_name => 'Transfer'
 
   def to_s
   	initials

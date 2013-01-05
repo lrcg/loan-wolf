@@ -1,0 +1,87 @@
+<blockquote>
+<p><%= @quote.text %></p>
+<small><%= @quote.attribution %></small>
+
+</blockquote>
+
+<hr />
+<h3>The Wolf Bites You <small>(money you owe)</small></h3>
+
+<% if @transfers_as_debtor.any? %>
+	<table class="table table-bordered table-striped table-hover">
+	  <tr>
+	    <th>Creditor</th>
+	    <th>Last Updated</th>
+	    <th style="text-align:right; padding-right:1em">Amount</th>
+	    <th>Action</th>
+	  </tr>
+	<% debtorTotal = 0.0 %>
+	<% @transfers_as_debtor.each do |loan| %>
+	  <% debtorTotal += loan.amount %>
+	  <tr>
+	    <td><%= loan.creditor %></td>
+	    <td><%= time_ago_in_words loan.updated_at %> ago</td>
+		<td style="text-align:right; padding-right:1em"><%= number_to_currency loan.amount %></td>
+ 
+		<td>
+	    	<% if !loan.approved_by_user_id? %>  
+	          <%= link_to raw('Approve <i class="icon-ok"></i>'), markApproved_url(loan), :class => 'btn btn-success', :method => :put %>
+	          <%= link_to raw('Reject <i class="icon-warning-sign"></i>'), destroy_url(loan), :class => 'btn btn-warning', :method => :delete, :confirm => 'Are you sure you want to reject this loan?' %>   
+	      <% else %>
+	          <%= link_to raw('I paid this! <i class="icon-ok"></i>'), sendPaymentReminder_url(loan), :class => 'btn btn-success', :confirm => 'Please confirm that you want a reminder of payment sent to the creditor regarding this loan. Only that individual can mark this loan as paid.' %>
+	    	<% end %>
+		</td>
+	  </tr>
+
+	  <% end %>
+	  <tr>
+	  	<td colspan="2">
+	  		&nbsp;
+	  	</td>
+	  	<td style="text-align:right; padding-right:1em">
+	  		<strong>You owe <%= number_to_currency debtorTotal %></strong>
+	  	</td>
+	  	<td colspan="1">&nbsp;</td>
+	  </tr>
+	</table>
+<% else %>
+  <p>You're debt free!</p>
+<% end %>
+<hr />
+<h3>You Bite the Wolf <small>(money you're owed)</small></h3>
+
+<% if @transfers_as_creditor.any? %>
+  <table class="table table-bordered table-striped table-hover">
+    <tr>
+      <th>Debtor</th>
+      <th>Last Updated</th>
+      <th style="text-align:right; padding-right:1em">Amount</th>
+      <th>Action</th>
+    </tr>
+  <% creditorTotal = 0.0 %>
+  <% @transfers_as_creditor.each do |loan| %>
+    <% creditorTotal += loan.amount %>
+    <tr>
+      <td><%= loan.debtor %></td>
+      <td><%= time_ago_in_words loan.updated_at %> ago</td>
+    <td style="text-align:right; padding-right:1em"><%= number_to_currency loan.amount %></td>
+   
+    <td>
+      <%= link_to raw('Mark Paid <i class="icon-thumbs-up"></i>'), markPaid_url(loan), :class => 'btn btn-success', :method => :put, :confirm => 'Are you sure you want to mark this loan as paid?' %>
+    </td>
+    </tr>
+
+    <% end %>
+    <tr>
+      <td colspan="2">
+        &nbsp;
+      </td>
+      <td style="text-align:right; padding-right:1em">
+        <strong>You're owed <%= number_to_currency creditorTotal %></strong>
+      </td>
+      <td colspan="1">&nbsp;</td>
+    </tr>
+  </table>
+<% else %>
+  <p>No one owes you anything!</p>
+<% end %>
