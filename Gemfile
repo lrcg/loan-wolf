@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -43,6 +43,5 @@ gem 'bootstrap-sass'
 # To use debugger
 # gem 'debugger'
 
-gem 'libv8'
-gem 'therubyracer'
+gem 'therubyracer', '~> 0.11.1'
 gem 'unicorn'
