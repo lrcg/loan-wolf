@@ -16,5 +16,4 @@
 
 .vagrant
 .chef-node
-VagrantFile
 config/database.yml
