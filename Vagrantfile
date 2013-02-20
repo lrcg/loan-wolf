@@ -4,6 +4,8 @@
 Vagrant::Config.run do |config|
 	config.vm.box = "loan-wolf"
 	config.vm.box_url = "http://vagrant.cichq.com/loan-wolf/current.box"
+#	config.vm.box = "lucid32-rbenv-postgresql"
+#	config.vm.box_url = "http://vagrant.cichq.com/lucid32-rbenv-postgresql/current.box"
 	config.vm.forward_port 80, 8003
 	config.vm.forward_port 3000, 3000
 	config.vm.provision :chef_client do |chef|
