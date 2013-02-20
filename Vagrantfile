@@ -8,7 +8,7 @@ Vagrant::Config.run do |config|
 	config.vm.forward_port 3000, 3000
 	config.vm.provision :chef_client do |chef|
 		chef.environment = "vagrant"
-		chef.node_name = "loan-wolf-vagrant"
+		chef.node_name = "vagrant-loan-wolf"
 		chef.chef_server_url = "http://chef.ciclabs.com:4000"
 		chef.validation_key_path = "/etc/chef/validation.pem"
 		chef.validation_client_name = "chef-validator"
