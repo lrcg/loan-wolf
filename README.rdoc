@@ -6,7 +6,7 @@ Presently Loan Wolf relies on a single basic model: the loan. However, this does
 
 == Installation
 
-Install, it, set up your db, and run this rake task to import loan quotes:
+Install it, set up your db, and run this rake task to import loan quotes:
 
   rake quotes:import
 
