@@ -5,7 +5,7 @@ class Loan < ActiveRecord::Base
   belongs_to :debtor, :class_name => 'User', :foreign_key => 'debtor_user_id'
   belongs_to :creditor, :class_name => 'User', :foreign_key => 'creditor_user_id'
 
-  validates :amount, numericality: { greater_than: 0, message: 'must be a legitimate dollar value greater than $0' }
+  validates :amount, numericality: { greater_than: 0, message: 'must be a legitimate dollar value greater than $0'}
 
   scope :current, where(:is_archived => nil)
 
@@ -15,4 +15,9 @@ class Loan < ActiveRecord::Base
   def can_be_marked_approved_by?(user)
   	user == debtor
   end
+
+  def total_debts_by_debtor
+    self.group(:debtor).select("debtor, SUM(*) as sum")
+  end
+
 end

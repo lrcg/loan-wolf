@@ -5,6 +5,10 @@ class LoansController < ApplicationController
   	@loans_as_creditor = current_user.credits.current
     @loans_as_debtor = current_user.debts.current
     @quote = Quote.offset(rand(Quote.count)).first
+    @current_user = current_user
+    if current_user.opt_to_share_debt?
+      @total_debts_by_debtor = Loan.total_debts_by_debtor
+    end
   end
   def newTo
   	@users = User.where('id != ?', current_user.id)
@@ -102,4 +106,11 @@ class LoansController < ApplicationController
 
   def listAll
   end
+
+  def optInShareDebtsPublicly
+  end
+
+  def optOutShareDebtsPublicly
+  end
+
 end
