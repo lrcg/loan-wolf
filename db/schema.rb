@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209195645) do
+ActiveRecord::Schema.define(:version => 20160228221556) do
 
   create_table "loans", :force => true do |t|
     t.integer  "debtor_user_id"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(:version => 20121209195645) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "initials"
+    t.boolean  "opt_to_share_debt"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
