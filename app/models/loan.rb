@@ -7,6 +7,7 @@ class Loan < ActiveRecord::Base
 
   validates :amount, numericality: { greater_than: 0, message: 'must be a legitimate dollar value greater than $0'}
 
+  # Bug? Should check for approval status as well
   scope :current, where(:is_archived => nil)
 
   def can_be_marked_paid_by?(user)
@@ -19,6 +20,7 @@ class Loan < ActiveRecord::Base
   def self.total_debts_by_debtor
     self.joins(:debtor)
       .where('users.opt_to_share_debt' => true)
+      .where("approved_date IS NOT NULL")
       .where(:is_archived => nil)
       .group(:debtor_user_id)
       .select("debtor_user_id, SUM(amount) as sum")
