@@ -19,6 +19,10 @@ Slate2::Application.routes.draw do
 
   get "loans/:id/sendPaymentReminder" => 'loans#sendPaymentReminder', :as => :sendPaymentReminder
 
+  put "users/optOutShareDebtsPublicly" => 'users#optOutShareDebtsPublicly', :as => :optOutShareDebtsPublicly
+
+  put "users/optInShareDebtsPublicly" => 'users#optInShareDebtsPublicly', :as => :optInShareDebtsPublicly
+
   devise_for :users
 
   # The priority is based upon order of creation:
