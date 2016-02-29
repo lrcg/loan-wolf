@@ -92,5 +92,24 @@
   <p>No one owes you anything!</p>
 <% end %>
 
-<% if @loans_as_debtor.any? %>
+<% if @total_debts_by_debtor.any? %>
+    <hr />
+    <h3>Biggest Wolf Bites <small>(Most money owed)</small></h3>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+	    <tr>
+	        <th>Debtor</th>
+	        <th style="text-align:right; padding-right:1em">Amount owed</th>
+	    </tr>
+        </thead>
+        <tbody>
+            <% @total_debts_by_debtor.each do |debtor| %>
+                <tr>
+                    <td><%= debtor.debtor %></td>
+                    <td><%= debtor.sum%></td>
+                </tr>
+                
+            <% end %>
+        </tbody>
+    </table>
 <% end %>
