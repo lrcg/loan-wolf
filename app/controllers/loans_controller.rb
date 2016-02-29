@@ -107,10 +107,4 @@ class LoansController < ApplicationController
   def listAll
   end
 
-  def optInShareDebtsPublicly
-  end
-
-  def optOutShareDebtsPublicly
-  end
-
 end
