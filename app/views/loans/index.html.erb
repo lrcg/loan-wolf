@@ -8,9 +8,9 @@
 <h3>The Wolf Bites You <small>(money you owe)</small></h3>
 
 <% if @current_user.opt_to_share_debt? %>
-    <%= link_to raw('Share my debts publicly <i class="icon-remove"></i>'), optOutShareDebtsPublicly_url(), :class => 'btn btn-danger',  :method => :put, :confirm => 'Please confirm that you keep the amount you owe as a debtor private.' %>
+    <%= link_to raw('Stop sharing my debts publicly <i class="icon-remove"></i>'), optOutShareDebtsPublicly_url(), :class => 'btn btn-danger',  :method => :put, :confirm => 'Please confirm that you want to keep the amount you owe as a debtor private.' %>
 <% else %>                                                                                                                               
-    <%= link_to raw('Share my debts publicly <i class="icon-ok"></i>'),     optInShareDebtsPublicly_url(),  :class => 'btn btn-success', :method => :put, :confirm => 'Please confirm that you make the amount you owe as a debtor public.' %>
+    <%= link_to raw('Start sharing my debts publicly <i class="icon-ok"></i>'),    optInShareDebtsPublicly_url(),  :class => 'btn btn-success', :method => :put, :confirm => 'Please confirm that you want to make the amount you owe as a debtor public.' %>
 <% end %>
 
 <% if @loans_as_debtor.any? %>
