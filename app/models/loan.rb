@@ -17,7 +17,10 @@ class Loan < ActiveRecord::Base
   end
 
   def self.total_debts_by_debtor
-    self.group(:debtor_user_id).select("debtor_user_id, SUM(amount) as sum")
+    self.joins(:debtor)
+      .where('users.opt_to_share_debt' => true)
+      .group(:debtor_user_id)
+      .select("debtor_user_id, SUM(amount) as sum")
   end
 
 end
