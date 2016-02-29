@@ -7,12 +7,6 @@
 <hr />
 <h3>The Wolf Bites You <small>(money you owe)</small></h3>
 
-<% if @current_user.opt_to_share_debt? %>
-    <%= link_to raw('Stop sharing my debts publicly <i class="icon-remove"></i>'), optOutShareDebtsPublicly_url(), :class => 'btn btn-danger',  :method => :put, :confirm => 'Please confirm that you want to keep the amount you owe as a debtor private.' %>
-<% else %>                                                                                                                               
-    <%= link_to raw('Start sharing my debts publicly <i class="icon-ok"></i>'),    optInShareDebtsPublicly_url(),  :class => 'btn btn-success', :method => :put, :confirm => 'Please confirm that you want to make the amount you owe as a debtor public.' %>
-<% end %>
-
 <% if @loans_as_debtor.any? %>
 	<table class="table table-bordered table-striped table-hover">
 	  <tr>
@@ -92,24 +86,31 @@
   <p>No one owes you anything!</p>
 <% end %>
 
-<% if @total_debts_by_debtor.any? %>
-    <hr />
-    <h3>Biggest Wolf Bites <small>(Most money owed)</small></h3>
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-	    <tr>
-	        <th>Debtor</th>
-	        <th style="text-align:right; padding-right:1em">Amount owed</th>
-	    </tr>
-        </thead>
-        <tbody>
-            <% @total_debts_by_debtor.each do |debtor| %>
-                <tr>
-                    <td><%= debtor.debtor %></td>
-                    <td><%= debtor.sum%></td>
-                </tr>
-                
-            <% end %>
-        </tbody>
-    </table>
+<hr />
+<h3>Biggest Wolf Bites <small>(Most money owed)</small></h3>
+<% if @current_user.opt_to_share_debt? %>
+    <% if @total_debts_by_debtor.any? %>
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+	        <tr>
+	            <th>Debtor</th>
+	            <th style="text-align:right; padding-right:1em">Amount owed</th>
+	        </tr>
+            </thead>
+            <tbody>
+                <% @total_debts_by_debtor.each do |debtor| %>
+                    <tr>
+                        <td><%= debtor.debtor %></td>
+                        <td style="text-align:right; padding-right:1em">
+                            <%= number_to_currency debtor.sum%>
+                        </td>
+                    </tr>
+                    
+                <% end %>
+            </tbody>
+        </table>
+    <% end %>
+    <%= link_to raw('Stop sharing my debts publicly <i class="icon-remove"></i>'), optOutShareDebtsPublicly_url(), :class => 'btn btn-danger',  :method => :put, :confirm => 'Please confirm that you want to keep the amount you owe as a debtor private.' %>
+<% else %>                                                                                                                               
+    <%= link_to raw('Start sharing my debts publicly <i class="icon-ok"></i>'),    optInShareDebtsPublicly_url(),  :class => 'btn btn-success', :method => :put, :confirm => 'Please confirm that you want to make the amount you owe as a debtor public.' %>
 <% end %>
