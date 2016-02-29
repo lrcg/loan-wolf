@@ -16,8 +16,8 @@ class Loan < ActiveRecord::Base
   	user == debtor
   end
 
-  def total_debts_by_debtor
-    self.group(:debtor).select("debtor, SUM(*) as sum")
+  def self.total_debts_by_debtor
+    self.group(:debtor_user_id).select("debtor_user_id, SUM(amount) as sum")
   end
 
 end
